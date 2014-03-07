@@ -59,6 +59,22 @@ config S5K3H2YX
 	  It is a Bayer 8MP sensor with auto focus and it supports
 	  two mipi lanes.
 
+config S5K3H1GX
+        bool "Sensor s5k3h1gx (Samsung 8M)"
+        depends on MSM_CAMERA
+        default n
+        ---help---
+          Support for S5K3H1GX samsung sensor driver.
+          It is a Bayer 8MP sensor with auto focus and it supports
+          two mipi lanes.
+
+config S5K3H1GX_ACT
+        bool "Sensor s5k3h1gx actuator"
+        depends on MSM_CAMERA
+        default n
+        ---help---
+          Autofocus of s5k3h1gx actuator
+
 config S5K6A1GX
 	bool "Sensor s5k6a1gx (Samsung 1.3M)"
 	depends on MSM_CAMERA
