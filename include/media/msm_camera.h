@@ -666,17 +666,38 @@ struct msm_stats_buf {
 	uint32_t frame_id;
 };
 #define MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT 0
+/* video capture mode in VIDIOC_S_PARM */
 #define MSM_V4L2_EXT_CAPTURE_MODE_PREVIEW \
-	(MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+1)
+        (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+1)
+/* extendedmode for video recording in VIDIOC_S_PARM */
 #define MSM_V4L2_EXT_CAPTURE_MODE_VIDEO \
-	(MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+2)
+        (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+2)
+/* extendedmode for the full size main image in VIDIOC_S_PARM */
 #define MSM_V4L2_EXT_CAPTURE_MODE_MAIN (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+3)
+/* extendedmode for the thumb nail image in VIDIOC_S_PARM */
 #define MSM_V4L2_EXT_CAPTURE_MODE_THUMBNAIL \
-	(MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+4)
+        (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+4)
 #define MSM_V4L2_EXT_CAPTURE_MODE_RAW \
-	(MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+5)
-#define MSM_V4L2_EXT_CAPTURE_MODE_MAX (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+6)
-
+        (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+5)
+#define MSM_V4L2_EXT_CAPTURE_MODE_RDI \
+        (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+6)
+#define MSM_V4L2_EXT_CAPTURE_MODE_RDI1 \
+        (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+7)
+#define MSM_V4L2_EXT_CAPTURE_MODE_RDI2 \
+        (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+8)
+#define MSM_V4L2_EXT_CAPTURE_MODE_AEC \
+        (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+9)
+#define MSM_V4L2_EXT_CAPTURE_MODE_AWB \
+        (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+10)
+#define MSM_V4L2_EXT_CAPTURE_MODE_AF \
+        (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+11)
+#define MSM_V4L2_EXT_CAPTURE_MODE_IHIST \
+        (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+12)
+#define MSM_V4L2_EXT_CAPTURE_MODE_CS \
+        (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+13)
+#define MSM_V4L2_EXT_CAPTURE_MODE_RS \
+        (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+14)
+#define MSM_V4L2_EXT_CAPTURE_MODE_MAX (MSM_V4L2_EXT_CAPTURE_MODE_DEFAULT+15)
 
 #define MSM_V4L2_PID_MOTION_ISO              V4L2_CID_PRIVATE_BASE
 #define MSM_V4L2_PID_EFFECT                 (V4L2_CID_PRIVATE_BASE+1)
@@ -1553,25 +1574,37 @@ struct img_plane_info {
 #define QCAMERA_DEVICE_GROUP_ID 1
 #define QCAMERA_VNODE_GROUP_ID 2
 #define MSM_CAM_V4L2_IOCTL_GET_CAMERA_INFO \
-	_IOWR('V', BASE_VIDIOC_PRIVATE + 1, struct msm_camera_v4l2_ioctl_t *)
+        _IOWR('V', BASE_VIDIOC_PRIVATE + 1, struct msm_camera_v4l2_ioctl_t *)
 
 #define MSM_CAM_V4L2_IOCTL_GET_CONFIG_INFO \
-	_IOWR('V', BASE_VIDIOC_PRIVATE + 2, struct msm_camera_v4l2_ioctl_t *)
+        _IOWR('V', BASE_VIDIOC_PRIVATE + 2, struct msm_camera_v4l2_ioctl_t *)
 
 #define MSM_CAM_V4L2_IOCTL_GET_MCTL_INFO \
-	_IOWR('V', BASE_VIDIOC_PRIVATE + 3, struct msm_camera_v4l2_ioctl_t *)
+        _IOWR('V', BASE_VIDIOC_PRIVATE + 3, struct msm_camera_v4l2_ioctl_t *)
 
 #define MSM_CAM_V4L2_IOCTL_CTRL_CMD_DONE \
-	_IOWR('V', BASE_VIDIOC_PRIVATE + 4, struct msm_camera_v4l2_ioctl_t *)
+        _IOWR('V', BASE_VIDIOC_PRIVATE + 4, struct msm_camera_v4l2_ioctl_t *)
 
 #define MSM_CAM_V4L2_IOCTL_GET_EVENT_PAYLOAD \
-	_IOWR('V', BASE_VIDIOC_PRIVATE + 5, struct msm_camera_v4l2_ioctl_t *)
-	
+        _IOWR('V', BASE_VIDIOC_PRIVATE + 5, struct msm_camera_v4l2_ioctl_t *)
+
 #define MSM_CAM_IOCTL_SEND_EVENT \
-	_IOWR('V', BASE_VIDIOC_PRIVATE + 6, struct v4l2_event)
+        _IOWR('V', BASE_VIDIOC_PRIVATE + 6, struct v4l2_event)
+
+#define MSM_CAM_V4L2_IOCTL_CFG_VPE \
+        _IOWR('V', BASE_VIDIOC_PRIVATE + 7, struct msm_vpe_cfg_cmd)
+
+#define MSM_CAM_V4L2_IOCTL_PRIVATE_S_CTRL \
+        _IOWR('V', BASE_VIDIOC_PRIVATE + 8, struct msm_camera_v4l2_ioctl_t)
+
+#define MSM_CAM_V4L2_IOCTL_PRIVATE_G_CTRL \
+        _IOWR('V', BASE_VIDIOC_PRIVATE + 9, struct msm_camera_v4l2_ioctl_t)
 
 struct msm_camera_v4l2_ioctl_t {
-	void __user *ioctl_ptr;
+        uint32_t id;
+        uint32_t len;
+        int32_t trans_code;
+        void *ioctl_ptr;
 };
 
 struct msm_ver_num_info {
