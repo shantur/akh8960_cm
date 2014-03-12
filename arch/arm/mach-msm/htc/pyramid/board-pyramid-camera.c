@@ -33,12 +33,12 @@
 
 static int camera_sensor_power_enable(char *power, unsigned volt, struct regulator **sensor_power);
 static int camera_sensor_power_disable(struct regulator *sensor_power);
-/*
+
 static struct platform_device msm_camera_server = {
 	.name = "msm_cam_server",
 	.id = 0,
 };
-*/
+
 
 static int pyramid_config_camera_on_gpios(void);
 static void pyramid_config_camera_off_gpios(void);
@@ -795,9 +795,9 @@ void __init msm8x60_init_cam(void)
 		msm_camera_boardinfo,
 		ARRAY_SIZE(msm_camera_boardinfo));
 
-	/*
+	
 	platform_device_register(&msm_camera_server);
-	*/
+	
 
 	for (i = 0; i < ARRAY_SIZE(cam_dev); i++) {
 		platform_device_register(cam_dev[i]);
