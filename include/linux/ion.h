@@ -46,6 +46,9 @@ enum ion_heap_type {
 	ION_NUM_HEAPS,
 };
 
+#define CACHED          1
+#define UNCACHED        0
+
 #define ION_HEAP_SYSTEM_MASK		(1 << ION_HEAP_TYPE_SYSTEM)
 #define ION_HEAP_SYSTEM_CONTIG_MASK	(1 << ION_HEAP_TYPE_SYSTEM_CONTIG)
 #define ION_HEAP_CARVEOUT_MASK		(1 << ION_HEAP_TYPE_CARVEOUT)

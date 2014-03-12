@@ -210,8 +210,6 @@
 #define VFE_CMD_STATS_BHIST_START                       143
 #define VFE_CMD_STATS_BHIST_STOP                        144
 #define VFE_CMD_SET_BAYER_ENABLE                        145
-#define VFE_CMD_SET_CAMERA_MODE                         146 
-#define VFE_CMD_SET_SW_SHARPNESS_CMD                    147
 
 struct msm_isp_cmd {
 	int32_t  id;
@@ -322,12 +320,7 @@ struct msm_mctl_pp_frame_cmd {
 	uint32_t src_buf_handle;
 	uint32_t dest_buf_handle;
 	struct msm_pp_crop crop;
-#if CONFIG_HTC_CAMERA_HAL_VERSION < 1
-	int src_path;
-	int dest_path;
-#else
 	int path;
-#endif
 	
 };
 
